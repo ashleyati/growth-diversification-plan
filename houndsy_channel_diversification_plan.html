@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Houndsy — Channel Diversification Plan</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a1a; padding: 2rem; max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 20px; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; }
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem; }
+  .metric { background: #f5f5f3; border-radius: 8px; padding: 1rem; }
+  .metric-label { font-size: 12px; color: #666; margin-bottom: 4px; }
+  .metric-value { font-size: 22px; font-weight: 500; color: #1a1a1a; }
+  .metric-sub { font-size: 11px; color: #aaa; margin-top: 2px; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 1.5rem; }
+  .tab { padding: 6px 14px; font-size: 13px; border: 0.5px solid #ccc; border-radius: 8px; cursor: pointer; background: transparent; color: #666; }
+  .tab.active { background: #f5f5f3; color: #1a1a1a; font-weight: 500; border-color: #999; }
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem; }
+  .phase-card { background: #fff; border: 0.5px solid #e0e0e0; border-radius: 12px; padding: 1rem; }
+  .phase-tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 8px; margin-bottom: 8px; }
+  .tag-audit { background: #E6F1FB; color: #0C447C; }
+  .tag-test { background: #E1F5EE; color: #085041; }
+  .tag-scale { background: #EEEDFE; color: #3C3489; }
+  .phase-title { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 6px; }
+  .phase-items { list-style: none; padding: 0; }
+  .phase-items li { font-size: 12px; color: #555; padding: 3px 0; border-bottom: 0.5px solid #eee; display: flex; align-items: flex-start; gap: 6px; }
+  .phase-items li:last-child { border-bottom: none; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .dot-blue { background: #378ADD; }
+  .dot-teal { background: #1D9E75; }
+  .dot-purple { background: #7F77DD; }
+  .channel-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 2rem; }
+  .channel-table th { font-size: 11px; font-weight: 500; color: #aaa; text-align: left; padding: 6px 10px; border-bottom: 0.5px solid #ccc; }
+  .channel-table td { padding: 8px 10px; border-bottom: 0.5px solid #eee; color: #1a1a1a; vertical-align: top; }
+  .channel-table tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 8px; font-weight: 500; }
+  .badge-high { background: #EAF3DE; color: #3B6D11; }
+  .badge-med { background: #FAEEDA; color: #854F0B; }
+  .badge-low { background: #E6F1FB; color: #185FA5; }
+  .badge-q1 { background: #E6F1FB; color: #0C447C; }
+  .badge-q2 { background: #E1F5EE; color: #085041; }
+  .progress-bar { height: 6px; background: #eee; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+  .progress-fill { height: 100%; border-radius: 3px; }
+  .goal-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; padding: 0.75rem 1rem; background: #f5f5f3; border-radius: 8px; }
+  .goal-label { font-size: 13px; color: #1a1a1a; }
+  .goal-pct { font-size: 13px; font-weight: 500; min-width: 100px; text-align: right; }
+  .north-star { padding: 1rem; border: 0.5px solid #e0e0e0; border-radius: 12px; background: #f5f5f3; }
+  .view { display: none; }
+  .view.active { display: block; }
+</style>
+</head>
+<body>
+  <h1>Houndsy — Channel Diversification Plan</h1>
+  <p class="subtitle">Prepared by Ashley · 2026</p>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Meta dependency today</div>
+      <div class="metric-value">~70-80%</div>
+      <div class="metric-sub">est. new customer share</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Non-Meta target, EOY 2026</div>
+      <div class="metric-value">25-30%</div>
+      <div class="metric-sub">from non-Meta channels</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">24-month goal</div>
+      <div class="metric-value">50%</div>
+      <div class="metric-sub">non-Meta new customers</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showView('v90', this)">90-day plan</button>
+    <button class="tab" onclick="showView('vchannels', this)">Channel roadmap</button>
+    <button class="tab" onclick="showView('vgoals', this)">12-month outlook</button>
+  </div>
+
+  <div id="v90" class="view active">
+    <p class="section-label">First 90 days: audit, test, baseline</p>
+    <div class="phase-grid">
+      <div class="phase-card">
+        <span class="phase-tag tag-audit">Days 1-30</span>
+        <div class="phase-title">Audit & orient</div>
+        <ul class="phase-items">
+          <li><span class="dot dot-blue"></span>Full attribution and spend audit across all channels</li>
+          <li><span class="dot dot-blue"></span>Identify where we are over-indexing vs. 2026 goal</li>
+          <li><span class="dot dot-blue"></span>Weekly attribution review cadence established</li>
+          <li><span class="dot dot-blue"></span>Define channel-level CAC and payback benchmarks</li>
+          <li><span class="dot dot-blue"></span>Align with CFO on margin targets and unit economics</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <span class="phase-tag tag-test">Days 31-60</span>
+        <div class="phase-title">Launch experiments</div>
+        <ul class="phase-items">
+          <li><span class="dot dot-teal"></span>Stand up non-Meta test calendar with kill criteria</li>
+          <li><span class="dot dot-teal"></span>Allocate 10-25% of paid budget to experiments</li>
+          <li><span class="dot dot-teal"></span>Launch first TikTok and Google paid tests</li>
+          <li><span class="dot dot-teal"></span>Select CRO tooling and define prioritization framework</li>
+          <li><span class="dot dot-teal"></span>Audit email/SMS flows and retention baseline</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <span class="phase-tag tag-scale">Days 61-90</span>
+        <div class="phase-title">Read & iterate</div>
+        <ul class="phase-items">
+          <li><span class="dot dot-purple"></span>First channel experiment read — scale or kill</li>
+          <li><span class="dot dot-purple"></span>First CRO test in queue</li>
+          <li><span class="dot dot-purple"></span>Creator/affiliate program economics defined</li>
+          <li><span class="dot dot-purple"></span>SEO content baseline and gap analysis complete</li>
+          <li><span class="dot dot-purple"></span>Present Q2 growth plan to CEO</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="vchannels" class="view">
+    <p class="section-label">Channel-by-channel diversification plan</p>
+    <table class="channel-table">
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Priority</th>
+          <th>Launch</th>
+          <th>Benchmark</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Google (paid search)</strong></td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-q1">Q1</span></td>
+          <td>CAC + ROAS by intent tier</td>
+          <td>High-intent queries, direct complement to Meta</td>
+        </tr>
+        <tr>
+          <td><strong>TikTok (paid social)</strong></td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-q1">Q1</span></td>
+          <td>CAC + payback period</td>
+          <td>Needs learning phase; separate benchmark from Meta</td>
+        </tr>
+        <tr>
+          <td><strong>Pinterest (paid social)</strong></td>
+          <td><span class="badge badge-med">Medium</span></td>
+          <td><span class="badge badge-q2">Q2</span></td>
+          <td>CAC + assisted revenue</td>
+          <td>Strong fit for premium home/pet visual product</td>
+        </tr>
+        <tr>
+          <td><strong>Affiliate / creator</strong></td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-q1">Q1</span></td>
+          <td>CPA + referral volume</td>
+          <td>Define economics first; structured test calendar</td>
+        </tr>
+        <tr>
+          <td><strong>Influencer</strong></td>
+          <td><span class="badge badge-med">Medium</span></td>
+          <td><span class="badge badge-q2">Q2</span></td>
+          <td>CAC + brand lift</td>
+          <td>Align with brand positioning; measurable ACQ goals</td>
+        </tr>
+        <tr>
+          <td><strong>SEO / content</strong></td>
+          <td><span class="badge badge-med">Medium</span></td>
+          <td><span class="badge badge-q1">Q1</span></td>
+          <td>Organic traffic + branded search growth</td>
+          <td>Lower CAC, longer payback; start early</td>
+        </tr>
+        <tr>
+          <td><strong>Email / SMS</strong></td>
+          <td><span class="badge badge-high">High</span></td>
+          <td><span class="badge badge-q1">Q1</span></td>
+          <td>Revenue attribution + repeat rate</td>
+          <td>Audit existing flows; build lifecycle and win-back</td>
+        </tr>
+        <tr>
+          <td><strong>PR</strong></td>
+          <td><span class="badge badge-low">Awareness</span></td>
+          <td><span class="badge badge-q2">Q2</span></td>
+          <td>Branded search volume + SOV</td>
+          <td>Brand health indicator; supports all paid channels</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="vgoals" class="view">
+    <p class="section-label">12-month diversification milestones</p>
+    <div class="goal-row">
+      <div>
+        <div class="goal-label">Q1 — Audit complete, first experiments live</div>
+        <div style="font-size: 11px; color: #aaa; margin-top: 2px;">Google, TikTok, affiliate launched. Attribution stack in place.</div>
+        <div class="progress-bar" style="width: 220px;"><div class="progress-fill" style="width: 15%; background: #378ADD;"></div></div>
+      </div>
+      <div class="goal-pct" style="color: #378ADD;">~15% non-Meta</div>
+    </div>
+    <div class="goal-row">
+      <div>
+        <div class="goal-label">Q2 — Winning channels identified and scaling</div>
+        <div style="font-size: 11px; color: #aaa; margin-top: 2px;">Pinterest, influencer live. CRO program running. First kills applied.</div>
+        <div class="progress-bar" style="width: 220px;"><div class="progress-fill" style="width: 40%; background: #1D9E75;"></div></div>
+      </div>
+      <div class="goal-pct" style="color: #1D9E75;">~20% non-Meta</div>
+    </div>
+    <div class="goal-row">
+      <div>
+        <div class="goal-label">Q3 — Diversification driving meaningful share</div>
+        <div style="font-size: 11px; color: #aaa; margin-top: 2px;">Affiliate/creator scaled. SEO contributing. Retention revenue growing.</div>
+        <div class="progress-bar" style="width: 220px;"><div class="progress-fill" style="width: 65%; background: #7F77DD;"></div></div>
+      </div>
+      <div class="goal-pct" style="color: #7F77DD;">~25% non-Meta</div>
+    </div>
+    <div class="goal-row">
+      <div>
+        <div class="goal-label">Q4 — EOY target hit, 24-month plan set</div>
+        <div style="font-size: 11px; color: #aaa; margin-top: 2px;">25-30% non-Meta new customers. Roadmap to 50% underway.</div>
+        <div class="progress-bar" style="width: 220px;"><div class="progress-fill" style="width: 90%; background: #BA7517;"></div></div>
+      </div>
+      <div class="goal-pct" style="color: #BA7517;">25-30% non-Meta</div>
+    </div>
+    <div class="north-star">
+      <div style="font-size: 13px; font-weight: 500; color: #1a1a1a; margin-bottom: 4px;">24-month north star</div>
+      <div style="font-size: 13px; color: #555;">50% of new customers from non-Meta channels. No single channel above 40% of acquisition. Durable, compounding growth through owned and earned channels.</div>
+    </div>
+  </div>
+
+  <script>
+    function showView(id, el) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      el.classList.add('active');
+    }
+  </script>
+</body>
+</html>
